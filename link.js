@@ -177,18 +177,18 @@ export function EndedLinked () {
       head = head.next
       head.prev = last
       last.next = head
-      return true
     } else if (index === (count - 1)) {
       last = last.prev
       last.next = head
       head.prev = last
-      return true
+    } else {
+      const getNode = this.at(index)
+      const prev = getNode.prev
+      const next = getNode.next
+      prev.next = next
+      next.prev = prev
     }
-    const getNode = this.at(index)
-    const prev = getNode.prev
-    const next = getNode.next
-    prev.next = next
-    next.prev = prev
+    count--
     // getNode.next = null
     // getNode
   }
