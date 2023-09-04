@@ -1,4 +1,5 @@
 // 手写双端循环链表
+/* eslint-disable */
 class Node {
   /**
    *
@@ -158,6 +159,36 @@ export function EndedLinked () {
       }
     }
     return ele
+  }
+  /**
+   * @param { number } index - 链表的下标
+   * @param { any } element - 要添加的节点的值
+   * @description 在链表的指定位置添加节点
+   */
+  this.insertAtIndex = (index, element) => {
+    if (typeof index !== 'number') {
+      throw 'index参数不能为number以外的类型'
+    }
+    if (index > count) {
+      throw 'index不能超出链表的长度'
+    }
+    if (index < 0) {
+      throw 'index不能为负数'
+    }
+    if (index === 0) {
+      this.unshift(element)
+    } else if (index === count) {
+      this.push(element)
+    } else {
+      const prevNode = this.at(index - 1)
+      const nextNode = prevNode.next
+      const newNode = new Node(element)
+      newNode.prev = prevNode
+      newNode.next = nextNode
+      prevNode.next = newNode
+      nextNode.prev = newNode
+      count++
+    }
   }
   /**
    * @param { number } index - 链表的下标
